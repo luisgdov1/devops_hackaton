@@ -12,14 +12,17 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+      
+      
+      - name: Set Resource Group
+        run: az configure --defaults group=${{ vars.AZURE_RG }}
+      
       # Deploy Bicep file
       - name: create resources
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ vars.AZURE_RG }}
-          ResourceGroup: ${{ vars.AZURE_RG }}
           template: ${{ github.workspace }}/config/main.bicep
           parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
           failOnStdErr: false
