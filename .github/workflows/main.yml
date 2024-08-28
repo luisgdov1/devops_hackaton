@@ -13,10 +13,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
-      
-      - name: Set Resource Group
-        run: az configure --defaults group=${{ secrets.AZURE_RG }}
-      
       # Deploy Bicep file
       - name: create resources
         uses: azure/arm-deploy@v1
