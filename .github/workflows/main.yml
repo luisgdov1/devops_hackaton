@@ -19,6 +19,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ vars.AZURE_RG }}
+          ResourceGroup: ${{ vars.AZURE_RG }}
           template: ${{ github.workspace }}/config/main.bicep
           parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
           failOnStdErr: false
